@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .form-group {
+        margin-bottom: 15px; 
+    }
+
+    label {
+        display: block; 
+        margin-bottom: 5px; 
+    }
+
+    input {
+        width: 100%; 
+        padding: 8px; 
+        box-sizing: border-box; 
+    }
+
+    button {
+        padding: 10px 15px; 
+        cursor: pointer;
+        margin-top: 20px;
+    }
+
+    .error {
+        color: red; 
+        font-size: 0.9em; 
+    }
+</style>
+
+<div class="container">
+    <h2>Регистрация</h2>
+    <form method="POST" action="{% url 'register' %}">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="username">Имя пользователя:</label>
+            <input type="text" name="username" id="username" value="{{ request.POST.username|default_if_none:'' }}">
+            {% if form.username.errors %}
+                <div class="error">{{ form.username.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="first_name">Имя:</label>
+            <input type="text" name="first_name" id="first_name" value="{{ request.POST.first_name|default_if_none:'' }}">
+            {% if form.first_name.errors %}
+                <div class="error">{{ form.first_name.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="last_name">Фамилия:</label>
+            <input type="text" name="last_name" id="last_name" value="{{ request.POST.last_name|default_if_none:'' }}">
+            {% if form.last_name.errors %}
+                <div class="error">{{ form.last_name.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="password1">Пароль:</label>
+            <input type="password" name="password1" id="password1">
+            {% if form.password1.errors %}
+                <div class="error">{{ form.password1.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="password2">Подтвердите пароль:</label>
+            <input type="password" name="password2" id="password2">
+            {% if form.password2.errors %}
+                <div class="error">{{ form.password2.errors }}</div>
+            {% endif %}
+        </div>
+
+        <button type="submit" class="knopka">Зарегистрироваться</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Электронный дневник</title>
+    <link rel="stylesheet" href="/static/css/style.css"> <!-- Убедитесь, что путь правильный -->
+    <script>
+        function setRole(role) {
+            const studentContent = document.getElementById('student-content');
+            const teacherContent = document.getElementById('teacher-content');
+
+            if (role === 'student') {
+                studentContent.style.display = 'block';
+                teacherContent.style.display = 'none';
+            } else if (role === 'teacher') {
+                studentContent.style.display = 'none';
+                teacherContent.style.display = 'block';
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Электронный дневник "УМКА"</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Главная</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="/schedule">Расписание и посещаемость</a></li>
+                    <li><a href="/homework">Домашние задания и тесты</a></li>
+                    <li><a href="/grades">Оценки</a></li>
+                    <li><a href="/materials">Дополнительные материалы</a></li>
+                    <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="logout-link">Выход</button>
+                    </form>
+                        <li>Добро пожаловать, <span style="color: #f6c418; font-weight: bold;">{{ user.username }}</span>!</li>
+                    {% else %}
+                        <li><a href="/login">Вход</a></li>
+                        <li><a href="/register">Регистрация</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        {% block content %}
+        <div class="container">
+            <p>Добро пожаловать в Электронный дневник!</p>
+        </div>
+        {% endblock %}
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Электронный дневник. Все права защищены.</p>
+        </div>
+    </footer>
+</body>
+</html>

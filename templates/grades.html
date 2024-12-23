@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Оценки</h2>
+    <p>Здесь отображаются ваши оценки за текущую учебную четверть.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Ученик</th>
+                <th>Предмет</th>
+                <th>Оценка</th>
+                {% if is_teacher %}
+                    <th>Действия</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for grade in grades %}
+                <tr>
+                    <td>{{ grade.student }}</td>
+                    <td>{{ grade.subject.name }}</td>
+                    <td>{{ grade.score }}</td>
+                    {% if is_teacher %}
+                        <td>
+                            <a href="{% url 'edit_grade' grade.grade_id %}">Редактировать</a>
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+    

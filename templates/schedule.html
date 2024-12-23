@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+
+{% block title %}Расписание{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Ваше расписание</h2>
+    {% if schedule %}
+    <div class="schedule-container">
+        {% for entry in schedule %}
+            <div class="schedule-block">
+                <div class="schedule-date">
+                    <strong>День:</strong> {{ entry.day|date:"d.m.Y" }}
+                </div>
+                <div class="schedule-time">
+                    <strong>Время:</strong> {{ entry.time }}
+                </div>
+                <div class="schedule-subject">
+                    <strong>Предмет:</strong> {{ entry.subject.name }}
+                </div>
+                <div class="schedule-teacher">
+                    <strong>Преподаватель:</strong>
+                    {% if entry.teacher %}
+                        {{ entry.teacher.name }}
+                    {% else %}
+                        Нет преподавателя
+                    {% endif %}
+                </div>
+                <div class="schedule-student">
+                    <strong>Студент:</strong>
+                    {% if entry.student %}
+                        {{ entry.student.name }}
+                    {% else %}
+                        Нет студента
+                    {% endif %}
+                </div>
+                <div class="schedule-absences">
+                    <strong>Пропущенные занятия:</strong> {{ entry.absences_count }}
+                </div>
+                <div class="schedule-class">
+                    <strong>Класс:</strong> {{ entry.class_name.name }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>Нет записей в расписании.</p>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_styles %}
+<style>
+    .container {
+        max-width: 1200px; /* Максимальная ширина контейнера */
+        margin: 0 auto; /* Центрирование контейнера */
+        padding: 20px; /* Внутренние отступы */
+        background-color: #f9f9f9; /* Цвет фона для контейнера */
+        border-radius: 8px; /* Закругленные углы для контейнера */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень для контейнера */
+    }
+    .schedule-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 20px 0; /* Внутренние отступы для контейнера расписания */
+    }
+    .schedule-block {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 16px;
+        background-color: #ffffff; /* Белый фон для блоков */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s; /* Плавный переход для эффекта наведения */
+    }
+    .schedule-block:hover {
+        transform: translateY(-5px); /* Эффект при наведении */
+    }
+    .schedule-block div {
+        margin-bottom: 12px; /* Увеличенный отступ между элементами */
+    }
+    .schedule-block div:last-child {
+        margin-bottom: 0; /* Убираем отступ у последнего элемента */
+    }
+    .schedule-block strong {
+        color: #333;
+    }
+    @media (max-width: 600px) {
+        .schedule-block {
+            font-size: 14px;
+        }
+    }
+</style>
+{% endblock %}

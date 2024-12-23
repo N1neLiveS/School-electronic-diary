@@ -1,0 +1,136 @@
+/* Подключение шрифта Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
+/* Общие стили */
+html, body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.highlight-user {
+    color: #f6c418; /* Выберите желаемый цвет */
+    font-weight: bold; /* Сделать текст жирным */
+}
+/* Стили хедера */
+header {
+    background-color: #6a0dad;
+    color: white;
+    padding: 20px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    text-align: center;
+    font-weight: 700;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #d4a4ff;
+}
+
+/* Стили основного контента */
+main {
+    padding: 20px 0;
+    flex: 1;
+}
+
+main .container {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили футера */
+footer {
+    background-color: #6a0dad;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    position: relative;
+    font-size: 14px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для кнопок (если потребуется) */
+button {
+    background-color: #6a0dad;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #580d9c;
+}
+
+.logout-link {
+    background: none;
+    border: none;
+    color: white; /* Цвет текста, как у ссылок */
+    text-decoration: none; /* Убираем подчеркивание */
+    font-weight: 500; /* Тот же вес шрифта */
+    font-family: inherit;
+    cursor: pointer; /* Указатель для кликабельности */
+    padding: 0; /* Убираем отступы */
+    transition: color 0.3s; /* Плавный переход цвета */
+}
+
+.logout-link:hover {
+    color: #d4a4ff; /* Цвет при наведении */
+}
+
+.knopka {
+    background-color: #6a0dad;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.knopka:hover {
+    background-color: #9017ea;
+}
